@@ -1,0 +1,42 @@
+{
+  "extends": "next/core-web-vitals",
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "import-helpers"
+  ],
+  "rules": {
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          [
+            "/^react/",
+            "/^next/"
+          ],
+          "module",
+          "/^@shared/",
+          "absolute",
+          "/^@/modules/",
+          "/^@/components/",
+          "/^@/pages/",
+          "/utils/",
+          "/^@/models/",
+          "/^@/store/",
+          "/^@/lib/",
+          "/^@/styles/",
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        }
+      }
+    ]
+  }
+}
