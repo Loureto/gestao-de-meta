@@ -30,7 +30,7 @@ export const SignIn = () => {
   });
 
   return (
-    <div className="flex flex-col w-full max-w-[400px] h-fit gap-10 px-5 py-5 bg-white shadow-md">
+    <div className="flex flex-col w-full h-fit gap-10 px-5 py-5 sm:bg-white sm:shadow-md sm:max-w-[400px]">
       <h1 className="text-2xl text-gray-900 font-bold m-auto">
         Faça login na sua conta
       </h1>
