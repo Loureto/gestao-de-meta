@@ -1,0 +1,11 @@
+# css
+/*.css
+
+# next.config.js
+/next.config.js
+
+# postcss
+/postcss.config.js
+
+# tailwindcss
+/tailwind.config.js

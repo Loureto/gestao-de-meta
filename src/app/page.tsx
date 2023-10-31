@@ -1,6 +1,5 @@
-'use client'
+'use client';
 
-import { SignIn } from "@/modules/auth"
+import { SignIn } from '@/modules/auth';
 
-
-export default SignIn
+export default SignIn;

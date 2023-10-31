@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from '@/hooks/useAuth';
 
 export const Dashboard = () => {
   const { handleClickLogout } = useAuth();
@@ -9,5 +9,5 @@ export const Dashboard = () => {
       <h1>Dashboard</h1>
       <button onClick={handleClickLogout}>sair</button>
     </main>
-  )
-}
+  );
+};

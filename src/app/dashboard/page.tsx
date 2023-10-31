@@ -1,5 +1,5 @@
-'use client'
+'use client';
 
-import { Dashboard } from "@/modules/dashboard"
+import { Dashboard } from '@/modules/dashboard';
 
-export default Dashboard
+export default Dashboard;
