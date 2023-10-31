@@ -1,23 +1,23 @@
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
-import { SignInProps } from '@/shared/models/AuthModel'
-import { useAuthStore } from '@/shared/store/useAuthStore'
-import Cookies from 'js-cookie'
+import { SignInProps } from '@/shared/models/AuthModel';
+import { useAuthStore } from '@/shared/store/useAuthStore';
+import Cookies from 'js-cookie';
 
 export const useAuth = () => {
-  const { fetchLogin } = useAuthStore()
-  const { replace } = useRouter()
-  const [viewPassword, setViewPassword] = useState<boolean>(false)
+  const { fetchLogin } = useAuthStore();
+  const { replace } = useRouter();
+  const [viewPassword, setViewPassword] = useState<boolean>(false);
 
-  async function handleClickSignIn (data: SignInProps) {
-    await fetchLogin(data)
-    replace('/dashboard')
+  async function handleClickSignIn(data: SignInProps) {
+    await fetchLogin(data);
+    replace('/dashboard');
   }
 
-  function handleClickLogout () {
-    Cookies.remove('RRE')
-    replace('/')
+  function handleClickLogout() {
+    Cookies.remove('RRE');
+    replace('/');
   }
 
   return {
@@ -25,5 +25,5 @@ export const useAuth = () => {
     setViewPassword,
     handleClickSignIn,
     handleClickLogout
-  }
-}
+  };
+};
