@@ -14,7 +14,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.+(js|jsx|ts|tsx|md|mdx|yml|yaml)": [
+    "/src/**/*.+(js|jsx|ts|tsx|md|mdx|yml|yaml)": [
       "yarn lint --fix",
       "yarn test --findRelatedTests --bail --passWithNoTests"
     ]
