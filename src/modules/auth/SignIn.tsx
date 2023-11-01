@@ -11,6 +11,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { InputGroup } from '@/components/ui/input-group';
 
+import { SignUp } from '.';
+
 const schema = z.object({
   email: z.string().email('E-mail inválido'),
   password: z.string().min(5, 'A senha precisa ter no mínimo 8 caracteres')
@@ -19,7 +21,7 @@ const schema = z.object({
 type DataForm = z.infer<typeof schema>;
 
 export const SignIn = () => {
-  const { viewPassword, setViewPassword, handleClickSignIn } = useAuth();
+  const { viewPassword, openModalSignUp, setViewPassword, setOpenModalSignUp, handleClickSignIn } = useAuth();
   const {
     register,
     handleSubmit,
@@ -30,88 +32,93 @@ export const SignIn = () => {
   });
 
   return (
-    <div className="flex flex-col w-full h-fit gap-10 px-5 py-5 sm:bg-white sm:shadow-md sm:max-w-md">
-      <h1 className="text-2xl text-gray-900 font-bold m-auto">
-        Faça login na sua conta
-      </h1>
-      <form
-        onSubmit={handleSubmit((data) => handleClickSignIn(data))}
-        className="flex flex-col gap-4"
-      >
-        <section>
-          <InputGroup.Root>
-            <InputGroup.Icon>
-              <HiUser className="w-5 h-5 text-gray-400" />
-            </InputGroup.Icon>
+    <>
+      <main className="flex flex-col w-full h-fit gap-10 px-5 py-5 sm:bg-white sm:shadow-md sm:max-w-md">
+        <h1 className="text-2xl text-gray-900 font-bold m-auto">
+          Faça login na sua conta
+        </h1>
+        <form
+          onSubmit={handleSubmit((data) => handleClickSignIn(data))}
+          className="flex flex-col gap-4"
+        >
+          <section>
+            <InputGroup.Root>
+              <InputGroup.Icon>
+                <HiUser className="w-5 h-5 text-gray-400" />
+              </InputGroup.Icon>
 
-            <Input
-              id="email"
-              type="email"
-              placeholder="E-mail"
-              {...register('email')}
-              isError={!!errors.email?.message}
-              hasIconLeft
-            />
-          </InputGroup.Root>
-          {errors.email?.message && (
-            <span className="text-sm text-rose-500">
-              {errors.email?.message}
-            </span>
-          )}
-        </section>
+              <Input
+                id="email"
+                type="email"
+                placeholder="E-mail"
+                {...register('email')}
+                isError={!!errors.email?.message}
+                hasIconLeft
+              />
+            </InputGroup.Root>
+            {errors.email?.message && (
+              <span className="text-sm text-rose-500">
+                {errors.email?.message}
+              </span>
+            )}
+          </section>
 
-        <section>
-          <div className="inline-flex w-full justify-end">
+          <section>
+            <div className="inline-flex w-full justify-end">
+              <Button
+                type="button"
+                variant="link"
+                className="text-sm text-primary font-semibold p-0 h-fit"
+              >
+                Esqueceu sua senha?
+              </Button>
+            </div>
+            <InputGroup.Root>
+              <InputGroup.Icon>
+                <HiLockClosed className="w-5 h-5 text-gray-400" />
+              </InputGroup.Icon>
+              <InputGroup.Icon
+                direction="right"
+                className="cursor-pointer"
+                onClick={() => setViewPassword(!viewPassword)}
+              >
+                {!viewPassword && <HiEye className="w-5 h-5 text-gray-400" />}
+                {viewPassword && <HiEyeOff className="w-5 h-5 text-gray-400" />}
+              </InputGroup.Icon>
+              <Input
+                id="password"
+                type={viewPassword ? 'text' : 'password'}
+                placeholder="Senha"
+                {...register('password')}
+                isError={!!errors.password?.message}
+                hasIconLeft
+              />
+            </InputGroup.Root>
+            {errors.password?.message && (
+              <span className="text-sm text-rose-500">
+                {errors.password?.message}
+              </span>
+            )}
+          </section>
+          <Button type="submit" className='mt-5'>Entrar</Button>
+        </form>
+
+        <footer className="inline-flex w-full justify-center mt">
+          <span className="text-sm text-gray-500">
+            Como solicitar cadastro?{' '}
             <Button
-              type="button"
               variant="link"
-              className="text-sm text-primary font-semibold p-0 h-fit"
+              type="button"
+              className="text-sm text-primary font-semibold p-0"
+              onClick={() => setOpenModalSignUp(true)}
             >
-              Esqueceu sua senha?
+              Clique aqui
             </Button>
-          </div>
-          <InputGroup.Root>
-            <InputGroup.Icon>
-              <HiLockClosed className="w-5 h-5 text-gray-400" />
-            </InputGroup.Icon>
-            <InputGroup.Icon
-              direction="right"
-              className="cursor-pointer"
-              onClick={() => setViewPassword(!viewPassword)}
-            >
-              {!viewPassword && <HiEye className="w-5 h-5 text-gray-400" />}
-              {viewPassword && <HiEyeOff className="w-5 h-5 text-gray-400" />}
-            </InputGroup.Icon>
-            <Input
-              id="password"
-              type={viewPassword ? 'text' : 'password'}
-              placeholder="Senha"
-              {...register('password')}
-              isError={!!errors.password?.message}
-              hasIconLeft
-            />
-          </InputGroup.Root>
-          {errors.password?.message && (
-            <span className="text-sm text-rose-500">
-              {errors.password?.message}
-            </span>
-          )}
-        </section>
-        <Button type="submit" className='mt-5'>Entrar</Button>
-      </form>
+          </span>
+        </footer>
+      </main>
 
-      <footer className="inline-flex w-full justify-center mt">
-        <span className="text-sm text-gray-500">
-          Como solicitar cadastro?{' '}
-          <Button
-            variant="link"
-            type="button"
-            className="text-sm text-primary font-semibold p-0"
-          >
-            Clique aqui
-          </Button>
-        </span>
-      </footer>
-    </div>
+      <SignUp open={openModalSignUp} onOpenChange={setOpenModalSignUp} />
+    </>
   );
 };

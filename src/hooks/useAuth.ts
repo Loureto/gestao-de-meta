@@ -9,6 +9,7 @@ export const useAuth = () => {
   const { fetchLogin } = useAuthStore();
   const { replace } = useRouter();
   const [viewPassword, setViewPassword] = useState<boolean>(false);
+  const [openModalSignUp, setOpenModalSignUp] = useState<boolean>(false);
 
   async function handleClickSignIn(data: SignInProps) {
     await fetchLogin(data);
@@ -22,7 +23,9 @@ export const useAuth = () => {
 
   return {
     viewPassword,
+    openModalSignUp,
     setViewPassword,
+    setOpenModalSignUp,
     handleClickSignIn,
     handleClickLogout
   };
