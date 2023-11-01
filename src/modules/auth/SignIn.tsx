@@ -30,7 +30,7 @@ export const SignIn = () => {
   });
 
   return (
-    <div className="flex flex-col w-full h-fit gap-10 px-5 py-5 sm:bg-white sm:shadow-md sm:max-w-[400px]">
+    <div className="flex flex-col w-full h-fit gap-10 px-5 py-5 sm:bg-white sm:shadow-md sm:max-w-md">
       <h1 className="text-2xl text-gray-900 font-bold m-auto">
         Faça login na sua conta
       </h1>
@@ -97,7 +97,7 @@ export const SignIn = () => {
             </span>
           )}
         </section>
-        <Button type="submit">Entrar</Button>
+        <Button type="submit" className='mt-5'>Entrar</Button>
       </form>
 
       <footer className="inline-flex w-full justify-center mt">
